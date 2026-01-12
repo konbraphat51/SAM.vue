@@ -119,13 +119,31 @@ pnpm install
 ### Build
 
 ```bash
+# Build library for npm
 pnpm run build
+
+# Build demo site for GitHub Pages
+pnpm run build:demo
 ```
 
 ### Development mode
 
 ```bash
 pnpm run dev
+```
+
+## Demo Site
+
+A live demo is available at: https://konbraphat51.github.io/SAM.vue/
+
+To build and deploy the demo site locally:
+
+```bash
+# Build the demo
+pnpm run build:demo
+
+# The demo will be built to the `docs` folder
+# For GitHub Pages, commit and push the docs folder
 ```
 
 ## Publishing to npm
