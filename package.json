@@ -30,7 +30,7 @@
     "emotion",
     "psychology"
   ],
-  "author": "",
+  "author": "SAM.vue contributors",
   "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.0"

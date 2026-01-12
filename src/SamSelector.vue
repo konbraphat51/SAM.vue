@@ -121,7 +121,8 @@ const shouldShowImage = (index: number): boolean => {
 }
 
 const getImagePath = (axis: SamAxis, index: number): string => {
-  // Assuming images are bundled with the library
+  // Images are bundled with the library in the images/{axis}/ directory
+  // This uses Vite's import.meta.url to resolve the path at build time
   return new URL(`../images/${axis}/${axis}-${index}.svg`, import.meta.url).href
 }
 

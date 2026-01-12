@@ -20,7 +20,7 @@ export default defineConfig({
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'style.css';
-          return assetInfo.name || 'assets/[name].[ext]';
+          return assetInfo.name ?? 'assets/[name].[ext]';
         }
       }
     },

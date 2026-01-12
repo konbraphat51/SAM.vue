@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -33,6 +33,13 @@ export declare const SamSelector: DefineComponent<SamProps, {}, {}, {}, {}, {}, 
 export default SamSelector;
 `;
 
-const distPath = join(__dirname, '..', 'dist', 'index.d.ts');
+const distDir = join(__dirname, '..', 'dist');
+const distPath = join(distDir, 'index.d.ts');
+
+// Ensure dist directory exists
+if (!existsSync(distDir)) {
+  mkdirSync(distDir, { recursive: true });
+}
+
 writeFileSync(distPath, types, 'utf-8');
 console.log('Type definitions generated successfully');
