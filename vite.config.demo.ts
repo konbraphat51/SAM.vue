@@ -33,10 +33,9 @@ export default defineConfig({
       }
     }
   ],
-  base: '/SAM.vue/',  // GitHub Pages base path
+  base: process.env.BASE_PATH || '/SAM.vue/',  // GitHub Pages base path, configurable via env
   build: {
     outDir: 'docs',
     emptyOutDir: true,
   }
 })
-
