@@ -132,6 +132,33 @@ pnpm run build:demo
 pnpm run dev
 ```
 
+### Testing
+
+The project uses Vitest for unit testing.
+
+```bash
+# Run tests once
+pnpm test
+
+# Run tests in watch mode (re-runs on file changes)
+pnpm test:watch
+
+# Run tests with UI
+pnpm test:ui
+
+# Run tests with coverage report
+pnpm test:coverage
+```
+
+The test suite includes:
+- Component rendering tests
+- Event emission tests
+- Props and defaults validation
+- Display format tests
+- Accessibility tests
+
+Tests automatically run on GitHub Actions for all pull requests and pushes to main/master/develop branches.
+
 ## Demo Site
 
 A live demo is available at: https://konbraphat51.github.io/SAM.vue/
