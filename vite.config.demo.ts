@@ -10,12 +10,12 @@ export default defineConfig({
     {
       name: 'copy-images',
       closeBundle() {
-        // Copy images to docs folder after build
+        // Copy images to dist folder after build
         const imageTypes = ['arousal', 'valence', 'dominance']
-        const docsDir = join(__dirname, 'docs', 'images')
+        const distDir = join(__dirname, 'dist', 'images')
         
         imageTypes.forEach(type => {
-          const targetDir = join(docsDir, type)
+          const targetDir = join(distDir, type)
           if (!existsSync(targetDir)) {
             mkdirSync(targetDir, { recursive: true })
           }
@@ -30,21 +30,21 @@ export default defineConfig({
         })
         
         // Create .nojekyll file to prevent Jekyll processing on GitHub Pages
-        const docsRootDir = join(__dirname, 'docs')
-        if (!existsSync(docsRootDir)) {
-          mkdirSync(docsRootDir, { recursive: true })
+        const distRootDir = join(__dirname, 'dist')
+        if (!existsSync(distRootDir)) {
+          mkdirSync(distRootDir, { recursive: true })
         }
-        const nojekyllPath = join(docsRootDir, '.nojekyll')
+        const nojekyllPath = join(distRootDir, '.nojekyll')
         writeFileSync(nojekyllPath, '', 'utf8')
         
-        console.log('Images copied to docs folder')
+        console.log('Images copied to dist folder')
         console.log('.nojekyll file created')
       }
     }
   ],
   base: process.env.BASE_PATH || './',  // GitHub Pages base path, configurable via env
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     emptyOutDir: true,
   }
 })
