@@ -39,19 +39,28 @@ A complete Vue 3 component library for Self-Assessment Manikin (SAM) emotion rat
 
 ## How to Publish to npm
 
-### Prerequisites
-```bash
-npm install -g pnpm  # Install pnpm if not already installed
-```
+### Automated Publishing (Recommended)
 
-### First Time Setup
-1. Create an npm account at https://www.npmjs.com/signup
-2. Login to npm:
+The package is configured for automatic publishing using GitHub Actions:
+
+1. **One-time setup**:
+   - Create npm account at https://www.npmjs.com/signup
+   - Generate an npm token (Automation type) at https://www.npmjs.com/settings/[username]/tokens
+   - Add the token as `NPM_TOKEN` secret in GitHub repository settings
+
+2. **Publishing a new version**:
    ```bash
-   npm login
+   npm version patch   # For bug fixes (1.0.0 -> 1.0.1)
+   npm version minor   # For new features (1.0.0 -> 1.1.0)
+   npm version major   # For breaking changes (1.0.0 -> 2.0.0)
+   git push && git push --tags
    ```
 
-### Publishing Steps
+3. GitHub Actions will automatically build and publish to npm
+
+See `NPM_PUBLISH_GUIDE.md` for detailed instructions.
+
+### Manual Publishing
 
 1. **Update version** (follow semantic versioning):
    ```bash
@@ -119,6 +128,17 @@ pnpm run dev
 ```bash
 pnpm run build
 ```
+
+## GitHub Pages
+
+A demo site is automatically deployed to GitHub Pages when pushing to the `main` or `master` branch.
+
+- **Live Demo**: https://konbraphat51.github.io/SAM.vue/
+- **Workflow**: `.github/workflows/deploy-pages.yml`
+- **Build Command**: `pnpm run build:demo`
+- **Output Directory**: `docs/`
+
+See `GITHUB_PAGES_SETUP.md` for detailed setup instructions.
 
 ## Files Structure
 
