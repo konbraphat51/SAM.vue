@@ -30,8 +30,12 @@ export default defineConfig({
         })
         
         // Create .nojekyll file to prevent Jekyll processing on GitHub Pages
-        const nojekyllPath = join(__dirname, 'docs', '.nojekyll')
-        writeFileSync(nojekyllPath, '')
+        const docsRootDir = join(__dirname, 'docs')
+        if (!existsSync(docsRootDir)) {
+          mkdirSync(docsRootDir, { recursive: true })
+        }
+        const nojekyllPath = join(docsRootDir, '.nojekyll')
+        writeFileSync(nojekyllPath, '', 'utf8')
         
         console.log('Images copied to docs folder')
         console.log('.nojekyll file created')
