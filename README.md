@@ -175,7 +175,59 @@ pnpm run build:demo
 
 ## Publishing to npm
 
-### First time setup
+### Automated Publishing with GitHub Actions
+
+The recommended way to publish this package is using GitHub Actions, which automatically publishes to npm when you create a version tag.
+
+#### Setup (One-time)
+
+1. Create an npm account at https://www.npmjs.com/signup if you don't have one
+
+2. Generate an npm access token:
+   - Go to https://www.npmjs.com/settings/[your-username]/tokens
+   - Click "Generate New Token"
+   - Select "Automation" type
+   - Copy the generated token
+
+3. Add the token to GitHub:
+   - Go to your repository Settings
+   - Navigate to Secrets and variables > Actions
+   - Click "New repository secret"
+   - Name: `NPM_TOKEN`
+   - Value: paste your npm token
+   - Click "Add secret"
+
+#### Publishing a New Version
+
+1. Update the version in `package.json`:
+```bash
+# For patch release (bug fixes): 1.0.0 -> 1.0.1
+npm version patch
+
+# For minor release (new features, backward compatible): 1.0.0 -> 1.1.0
+npm version minor
+
+# For major release (breaking changes): 1.0.0 -> 2.0.0
+npm version major
+```
+
+2. Push the version commit and tag:
+```bash
+git push && git push --tags
+```
+
+3. GitHub Actions will automatically:
+   - Run tests
+   - Build the library
+   - Publish to npm
+
+4. Check the "Actions" tab on GitHub to monitor the publishing progress
+
+### Manual Publishing (Alternative)
+
+If you prefer to publish manually:
+
+#### First time setup
 
 1. Create an npm account at https://www.npmjs.com/signup if you don't have one
 
@@ -184,7 +236,7 @@ pnpm run build:demo
 npm login
 ```
 
-### Publishing
+#### Publishing
 
 1. Update version in `package.json` (follow semantic versioning):
 ```bash
@@ -208,14 +260,14 @@ pnpm run build
 npm publish
 ```
 
-### Publishing updates
+#### Publishing updates
 
 1. Make your changes
 2. Update version: `npm version patch|minor|major`
 3. Build: `pnpm run build`
 4. Publish: `npm publish`
 
-### Publishing scoped packages (recommended for first publication)
+#### Publishing scoped packages (recommended for first publication)
 
 If the package name `sam-vue` is already taken, you can publish under your npm username:
 
