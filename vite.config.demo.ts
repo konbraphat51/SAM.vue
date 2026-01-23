@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { copyFileSync, mkdirSync, existsSync } from 'fs'
+import { copyFileSync, mkdirSync, existsSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
 // Configuration for building the demo/documentation site
@@ -29,11 +29,16 @@ export default defineConfig({
           }
         })
         
+        // Create .nojekyll file to prevent Jekyll processing on GitHub Pages
+        const nojekyllPath = join(__dirname, 'docs', '.nojekyll')
+        writeFileSync(nojekyllPath, '')
+        
         console.log('Images copied to docs folder')
+        console.log('.nojekyll file created')
       }
     }
   ],
-  base: process.env.BASE_PATH || '/SAM.vue/',  // GitHub Pages base path, configurable via env
+  base: process.env.BASE_PATH || './',  // GitHub Pages base path, configurable via env
   build: {
     outDir: 'docs',
     emptyOutDir: true,
