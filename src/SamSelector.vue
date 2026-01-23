@@ -147,12 +147,14 @@ const selectValue = (axis: SamAxis, index: number) => {
   flex-direction: column;
   gap: 2rem;
   padding: 1rem;
+  overflow: visible;
 }
 
 .sam-axis {
   display: flex;
   align-items: center;
   gap: 1rem;
+  overflow: visible;
 }
 
 .sam-legend-left,
@@ -168,17 +170,19 @@ const selectValue = (axis: SamAxis, index: number) => {
   gap: 0.5rem;
   flex: 1;
   justify-content: center;
+  overflow: visible;
 }
 
 .sam-image-wrapper {
   flex: 1;
-  max-width: 80px;
+  min-width: 80px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s;
+  overflow: visible;
 }
 
 .sam-image-wrapper:hover:not(.sam-image-empty) {
@@ -196,6 +200,7 @@ const selectValue = (axis: SamAxis, index: number) => {
   border: 2px solid transparent;
   border-radius: 4px;
   transition: border-color 0.2s;
+  overflow: visible;
 }
 
 .sam-image.sam-selected {
