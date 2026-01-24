@@ -194,6 +194,8 @@ const selectValue = (axis: SamAxis, index: number) => {
   cursor: pointer;
   transition: transform 0.2s;
   overflow: visible;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
 }
 
 .sam-image-wrapper:hover:not(.sam-image-empty) {
@@ -202,6 +204,8 @@ const selectValue = (axis: SamAxis, index: number) => {
 
 .sam-image-empty {
   cursor: default;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .sam-image {
@@ -217,5 +221,7 @@ const selectValue = (axis: SamAxis, index: number) => {
 .sam-image.sam-selected {
   border-color: #4CAF50;
   background-color: rgba(76, 175, 80, 0.1);
+  padding: 8px;
+  box-sizing: border-box;
 }
 </style>
