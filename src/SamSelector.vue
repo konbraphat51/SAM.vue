@@ -7,7 +7,11 @@
         <div
           v-for="index in displayIndices"
           :key="`arousal-${index}`"
-          :class="['sam-image-wrapper', { 'sam-image-empty': !shouldShowImage(index) }]"
+          :class="[
+            'sam-image-wrapper',
+            { 'sam-image-empty': !shouldShowImage(index) },
+            { 'sam-wrapper-selected': selectedValues.arousal === index && !shouldShowImage(index) }
+          ]"
           @click="() => selectValue('arousal', index)"
         >
           <img
@@ -28,7 +32,11 @@
         <div
           v-for="index in displayIndices"
           :key="`valence-${index}`"
-          :class="['sam-image-wrapper', { 'sam-image-empty': !shouldShowImage(index) }]"
+          :class="[
+            'sam-image-wrapper',
+            { 'sam-image-empty': !shouldShowImage(index) },
+            { 'sam-wrapper-selected': selectedValues.valence === index && !shouldShowImage(index) }
+          ]"
           @click="() => selectValue('valence', index)"
         >
           <img
@@ -49,7 +57,11 @@
         <div
           v-for="index in displayIndices"
           :key="`dominance-${index}`"
-          :class="['sam-image-wrapper', { 'sam-image-empty': !shouldShowImage(index) }]"
+          :class="[
+            'sam-image-wrapper',
+            { 'sam-image-empty': !shouldShowImage(index) },
+            { 'sam-wrapper-selected': selectedValues.dominance === index && !shouldShowImage(index) }
+          ]"
           @click="() => selectValue('dominance', index)"
         >
           <img
@@ -198,14 +210,20 @@ const selectValue = (axis: SamAxis, index: number) => {
   border-radius: 8px;
 }
 
-.sam-image-wrapper:hover:not(.sam-image-empty) {
+.sam-image-wrapper:hover {
   transform: scale(1.1);
 }
 
 .sam-image-empty {
-  cursor: default;
+  cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   background-color: rgba(0, 0, 0, 0.02);
+}
+
+.sam-wrapper-selected {
+  border: 2px solid #4CAF50;
+  background-color: rgba(76, 175, 80, 0.1);
+  box-sizing: border-box;
 }
 
 .sam-image {
