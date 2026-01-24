@@ -35,13 +35,14 @@ yarn add @konbraphat51/sam.vue
 
 <script setup>
 import { SamSelector } from '@konbraphat51/sam.vue'
-import '@konbraphat51/sam.vue/dist/style.css'
 
 const handleSelect = (axis, value) => {
   console.log(`Selected ${axis}: ${value}`)
 }
 </script>
 ```
+
+> **Note:** CSS is automatically injected when you import the component. No need to import a separate CSS file!
 
 ## Props
 
