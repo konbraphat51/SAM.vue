@@ -1,6 +1,6 @@
 {
   "name": "@konbraphat51/samvue",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Self-Assessment Manikin (SAM) Vue component library",
   "type": "module",
   "main": "./dist/sam-vue.umd.js",
@@ -32,7 +32,7 @@
     "psychology"
   ],
   "author": "SAM.vue contributors",
-  "license": "MIT",
+  "license": "BSL-1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/konbraphat51/SAM.vue"
