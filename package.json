@@ -1,5 +1,5 @@
 {
-  "name": "sam-vue",
+  "name": "@konbraphat51/sam.vue",
   "version": "1.0.0",
   "description": "Self-Assessment Manikin (SAM) Vue component library",
   "type": "module",
@@ -19,10 +19,7 @@
     "images"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "vite build && node scripts/build-types.js",
-    "build:demo": "vite build --config vite.config.demo.ts",
-    "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

@@ -1,43 +1,54 @@
-name: Publish to npm
+name: Publish
 
 on:
-  push:
-    tags:
-      - 'v*'
-
-permissions:
-  contents: read
+  release:
+    types: [published]
+  workflow_dispatch:
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+        registry-url: "https://registry.npmjs.org"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+    
+    - name: Install dependencies
+      run: pnpm i --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install
+    - name: Run tests
+      run: pnpm run test:run
+        
+    - name: Build package
+      run: pnpm run build
+    
+    - name: Publish to npm
+      run: pnpm publish --access public --no-git-checks
 
-      - name: Run tests
-        run: pnpm test
+  trigger-demo-update:
+    needs: publish
+    runs-on: ubuntu-latest
+    if: ${{ success() }}
 
-      - name: Build library
-        run: pnpm run build
-
-      - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+    - name: Trigger demo update
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.DEMO_REPO_PAT }}
+        repository: konbraphat51/SamVueDemo
+        event-type: update-package
+        client-payload: '{"version": "${{ github.event.release.tag_name }}"}'
