@@ -1,6 +1,6 @@
 {
   "name": "@konbraphat51/sam.vue",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Self-Assessment Manikin (SAM) Vue component library",
   "type": "module",
   "main": "./dist/sam-vue.umd.js",
