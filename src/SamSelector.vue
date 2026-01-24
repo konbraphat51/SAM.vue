@@ -57,6 +57,7 @@
             :src="getImagePath('dominance', index)"
             :alt="`Dominance ${index}`"
             :class="['sam-image', { 'sam-selected': selectedValues.dominance === index }]"
+            :style="{ transform: `scale(${getDominanceScale(index)})` }"
           />
         </div>
       </div>
@@ -121,9 +122,19 @@ const shouldShowImage = (index: number): boolean => {
 }
 
 const getImagePath = (axis: SamAxis, index: number): string => {
+  // For dominance, always use valence-5.svg and scale it with CSS
+  if (axis === 'dominance') {
+    return new URL(`../images/valence/valence-5.svg`, import.meta.url).href
+  }
   // Images are bundled with the library in the images/{axis}/ directory
   // This uses Vite's import.meta.url to resolve the path at build time
   return new URL(`../images/${axis}/${axis}-${index}.svg`, import.meta.url).href
+}
+
+const getDominanceScale = (index: number): number => {
+  // Scale values for dominance: 0.4, 0.6, 0.8, 0.9, 1.0, 1.1, 1.25, 1.35, 1.5
+  const scales = [0.4, 0.6, 0.8, 0.9, 1.0, 1.1, 1.25, 1.35, 1.5]
+  return scales[index - 1] || 1.0
 }
 
 const selectValue = (axis: SamAxis, index: number) => {
