@@ -2,18 +2,18 @@
 
 Self-Assessment Manikin (SAM) Vue 3 component library.
 
-[![npm version](https://badge.fury.io/js/@konbraphat51%2Fsam.vue.svg)](https://www.npmjs.com/package/@konbraphat51/sam.vue)
+[![npm version](https://badge.fury.io/js/@konbraphat51%2Fsamvue.svg)](https://www.npmjs.com/package/@konbraphat51/samvue)
 
 [**Live Demo**](https://konbraphat51.github.io/SamVueDemo/)
 
 ## Installation
 
 ```bash
-npm install @konbraphat51/sam.vue
+npm install @konbraphat51/samvue
 # or
-pnpm add @konbraphat51/sam.vue
+pnpm add @konbraphat51/samvue
 # or
-yarn add @konbraphat51/sam.vue
+yarn add @konbraphat51/samvue
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ yarn add @konbraphat51/sam.vue
 </template>
 
 <script setup>
-import { SamSelector } from '@konbraphat51/sam.vue'
+import { SamSelector } from '@konbraphat51/samvue'
 
 const handleSelect = (axis, value) => {
   console.log(`Selected ${axis}: ${value}`)
